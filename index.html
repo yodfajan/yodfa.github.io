@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โรงเรียนบ้านทุ่งไทร - Ban Thung Sai School</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #006b38;
+            --accent-yellow: #fdd017;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #f9fdf9;
+            --bg-gray: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Sarabun', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            background: var(--primary-green);
+            color: var(--text-light);
+            padding: 10px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background: #004d28;
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 6px 0;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .brand img {
+            height: 70px;
+            width: auto;
+            background: white;
+            border-radius: 50%;
+            padding: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .brand-text h1 { margin: 0; font-size: 1.4rem; color: white; }
+        .brand-text p { margin: 0; font-size: 0.85rem; color: var(--accent-yellow); }
+
+        nav ul { display: flex; list-style: none; gap: 20px; padding: 0; margin: 0; align-items: center; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; font-size: 0.95rem; }
+        nav a:hover { color: var(--accent-yellow); }
+
+        /* --- ปุ่มเปลี่ยนภาษา (แก้ไขใหม่ให้เท่ากัน) --- */
+        .lang-btn {
+            background: var(--accent-yellow);
+            color: var(--primary-green);
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.95rem; /* ปรับขนาดตัวอักษรให้พอดี */
+            font-family: 'Sarabun', sans-serif;
+            transition: all 0.3s;
+            
+            /* กำหนดขนาดคงที่และการจัดกึ่งกลาง */
+            min-width: 120px;  /* ความกว้างขั้นต่ำ (เท่ากันทุกภาษา) */
+            height: 36px;      /* ความสูงคงที่ */
+            display: flex;     /* ใช้ Flexbox จัดข้อความตรงกลาง */
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+        .lang-btn:hover { 
+            background: white; 
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        /* ปรับตำแหน่งไอคอนธงและข้อความ */
+        .lang-content {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* ระยะห่างระหว่างธงกับตัวหนังสือ */
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 107, 56, 0.85), rgba(0, 107, 56, 0.7)), url('background.png');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent-yellow);
+            color: var(--primary-green);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+        .cta-btn:hover { transform: scale(1.05); }
+
+        /* --- Global Section Style --- */
+        section { padding: 4rem 0; }
+        .section-title { 
+            text-align: center; 
+            color: var(--primary-green); 
+            margin-bottom: 3rem; 
+            font-size: 2rem; 
+            position: relative;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--accent-yellow); margin: 10px auto 0;
+        }
+
+        /* --- 1. History (Horizontal) --- */
+        .history-horizontal {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 30px;
+        }
+        .history-text {
+            flex: 2;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary-green);
+        }
+        .history-stats {
+            flex: 1;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .stats-container { display: flex; justify-content: space-around; width: 100%; gap: 20px; }
+        .stat-number { font-size: 3rem; font-weight: bold; color: var(--primary-green); line-height: 1; }
+
+        /* --- 2. Vision & Mission (Horizontal Split) --- */
+        .vm-container {
+            display: flex;
+            gap: 40px;
+        }
+        .vm-box {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .vm-title {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-weight: bold;
+        }
+        .vm-text { font-size: 1.1rem; }
+        .mission-list { list-style: none; padding: 0; }
+        .mission-list li { margin-bottom: 12px; display: flex; align-items: start; }
+        .mission-list li::before {
+            content: "•"; color: var(--accent-yellow); font-size: 2rem; line-height: 1.2rem; margin-right: 10px;
+        }
+
+        /* --- 3. THUNGSAI MODEL (Grid) --- */
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .model-item {
+            background: white;
+            padding: 20px 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--primary-green);
+            transition: transform 0.3s;
+        }
+        .model-item:hover { transform: translateY(-5px); }
+        .model-letter {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            display: block;
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+        .model-key { font-weight: bold; font-size: 0.95rem; color: #000; display: block; margin-bottom: 5px; }
+        .model-desc { font-size: 0.85rem; color: #666; }
+
+        /* --- 4. Highlights (Grid) --- */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .hl-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .hl-card:hover { transform: translateY(-5px); }
+        .hl-icon { height: 60px; width: auto; margin-bottom: 15px; object-fit: contain; }
+        .hl-emoji { font-size: 3.5rem; margin-bottom: 15px; display: block; }
+        .hl-title { color: var(--primary-green); font-size: 1.25rem; font-weight: bold; margin-bottom: 10px; }
+
+        /* --- 5. Curriculum (Horizontal) --- */
+        .curr-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .curr-box {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .curr-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .curr-body { padding: 25px; }
+        .curr-list li { margin-bottom: 8px; }
+
+        /* --- Footer & Contact --- */
+        .fb-btn {
+            background-color: #1877F2;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .contact-info { font-size: 1.1rem; margin-bottom: 5px; }
+
+        footer { background: #222; color: #aaa; padding: 3rem 0; text-align: center; border-top: 6px solid var(--accent-yellow); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .history-horizontal, .vm-container, .curr-container { flex-direction: column; }
+            .highlights-grid { grid-template-columns: repeat(2, 1fr); }
+            .model-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content h2 { font-size: 2.2rem; }
+        }
+        @media (max-width: 600px) {
+            .container { flex-direction: column; text-align: center; }
+            .highlights-grid { grid-template-columns: 1fr; }
+            nav ul { flex-direction: column; gap: 10px; }
+            .model-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- Language Toggle Mechanism --- */
+        [lang="en"] { display: none; }
+        body.english-mode [lang="th"] { display: none !important; }
+        body.english-mode [lang="en"] { display: block !important; }
+        body.english-mode span[lang="en"] { display: inline !important; }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <span lang="th">สังกัดสำนักงานเขตพื้นที่การศึกษาประถมศึกษาประจวบคีรีขันธ์ เขต 1 (สพป.ปข.1)</span>
+        <span lang="en">Affiliated with Prachuap Khiri Khan Primary Educational Service Area Office 1</span>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <a href="#" class="brand">
+                <img src="logo.png" alt="School Logo" onerror="this.style.display='none'">
+                <div class="brand-text">
+                    <h1 lang="th">โรงเรียนบ้านทุ่งไทร</h1>
+                    <h1 lang="en">Ban Thung Sai School</h1>
+                    <p lang="th">รากฐานมั่นคง ชุมชนร่วมใจ</p>
+                    <p lang="en">Community & Education</p>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home"><span lang="th">หน้าแรก</span><span lang="en">Home</span></a></li>
+                    <li><a href="#history"><span lang="th">ประวัติ</span><span lang="en">History</span></a></li>
+                    <li><a href="#vision"><span lang="th">วิสัยทัศน์</span><span lang="en">Vision</span></a></li>
+                    <li><a href="#highlights"><span lang="th">จุดเด่น</span><span lang="en">Highlights</span></a></li>
+                    <li><a href="#contact"><span lang="th">ติดต่อ</span><span lang="en">Contact</span></a></li>
+                    <li>
+                        <!-- ปุ่มเปลี่ยนภาษา ปรับปรุงใหม่ -->
+                        <button class="lang-btn" onclick="toggleLanguage()">
+                            <span lang="th" class="lang-content">🇺🇸 English</span>
+                            <span lang="en" class="lang-content">🇹🇭 ภาษาไทย</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div id="home" class="hero">
+        <div class="hero-content">
+            <h2 lang="th">THUNGSAI MODEL<br>นวัตกรรมเพื่อคุณภาพการศึกษา</h2>
+            <h2 lang="en">THUNGSAI MODEL<br>Innovation for Quality Education</h2>
+            <a href="#vision" class="cta-btn">
+                <span lang="th">อ่านเพิ่มเติม</span>
+                <span lang="en">Read More</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 1. HISTORY -->
+    <section id="history" class="container">
+        <h2 class="section-title"><span lang="th">ประวัติความเป็นมา</span><span lang="en">Our History</span></h2>
+        <div class="history-horizontal">
+            <div class="history-text">
+                <h3 style="color: var(--primary-green); margin-bottom: 10px;">
+                    <span lang="th">กำเนิดจากศรัทธาชุมชน</span>
+                    <span lang="en">Founded by Community Faith</span>
+                </h3>
+                <p lang="th">
+                    โรงเรียนบ้านทุ่งไทร ก่อตั้งขึ้นในช่วงแผนพัฒนาการศึกษาแห่งชาติ (ราว พ.ศ. 2515-2525) 
+                    จากความร่วมมือของชาวบ้านที่สละที่ดินและแรงกาย เพื่อให้บุตรหลานได้มีโอกาสทางการศึกษา
+                </p>
+                <p lang="en">
+                    Established (circa 1972-1982) under the National Education Plan. 
+                    The school was built through the unity of villagers who donated land and labor 
+                    to provide educational opportunities for local children.
+                </p>
+                <br>
+                <div style="background:#f0f7f4; padding:15px; border-radius:5px;">
+                    <strong lang="th" style="color:#000;">ความหมายของ "ทุ่งไทร"</strong>
+                    <strong lang="en" style="color:#000;">Meaning of "Thung Sai"</strong>
+                    <p lang="th" style="margin-top:5px;">คือความอุดมสมบูรณ์ของพื้นที่ราบ (ทุ่ง) และความร่มเย็นมั่นคงดั่งต้นไทรใหญ่</p>
+                    <p lang="en" style="margin-top:5px;">Represents the fertile fields ("Thung") and the stability/shelter of the Banyan tree ("Sai").</p>
+                </div>
+            </div>
+            <div class="history-stats">
+                <h3 lang="th" style="margin-bottom: 20px;">ข้อมูลปี 2567</h3>
+                <h3 lang="en" style="margin-bottom: 20px;">2024 Statistics</h3>
+                <div class="stats-container">
+                    <div>
+                        <div class="stat-number">82</div>
+                        <div class="stat-label"><span lang="th">นักเรียน</span><span lang="en">Students</span></div>
+                    </div>
+                    <div>
+                        <div class="stat-number">8</div>
+                        <div class="stat-label"><span lang="th">ห้องเรียน</span><span lang="en">Classes</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. VISION & MISSION -->
+    <section id="vision" style="background-color: var(--bg-gray);">
+        <div class="container">
+            <h2 class="section-title"><span lang="th">วิสัยทัศน์และพันธกิจ</span><span lang="en">Vision & Mission</span></h2>
+            
+            <div class="vm-container">
+                <!-- Vision Side -->
+                <div class="vm-box">
+                    <div class="vm-title"><span lang="th">วิสัยทัศน์</span><span lang="en">Vision</span></div>
+                    <p class="vm-text" lang="th">
+                        "โรงเรียนบ้านทุ่งไทร จัดการศึกษาอย่างมีคุณภาพตามมาตรฐานการศึกษาขั้นพื้นฐาน 
+                        บนพื้นฐานความเป็นไทย น้อมนำหลักปรัชญาของเศรษฐกิจพอเพียง"
+                    </p>
+                    <p class="vm-text" lang="en">
+                        "Ban Thung Sai School provides quality education meeting basic education standards, 
+                        rooted in Thai identity and guided by the Sufficiency Economy Philosophy."
+                    </p>
+                </div>
+
+                <!-- Mission Side -->
+                <div class="vm-box">
+                    <div class="vm-title"><span lang="th">พันธกิจ</span><span lang="en">Mission</span></div>
+                    <ul class="mission-list">
+                        <li>
+                            <span lang="th">ส่งเสริมและพัฒนาผู้เรียนให้มีคุณภาพตามมาตรฐานการศึกษา</span>
+                            <span lang="en">Promote and develop learners to meet educational standards.</span>
+                        </li>
+                        <li>
+                            <span lang="th">ปลูกฝังคุณธรรม จริยธรรม ตามวิถีไทยและวิถีพอเพียง</span>
+                            <span lang="en">Instill morality, ethics, and Thai values based on sufficiency.</span>
+                        </li>
+                        <li>
+                            <span lang="th">พัฒนาครูและบุคลากรให้มีความเชี่ยวชาญมืออาชีพ</span>
+                            <span lang="en">Develop teachers and personnel to achieve professional expertise.</span>
+                        </li>
+                        <li>
+                            <span lang="th">บริหารจัดการแบบมีส่วนร่วมโดยใช้โรงเรียนเป็นฐาน (SBM)</span>
+                            <span lang="en">Implement participatory management using School-Based Management (SBM).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. IDENTITY (THUNGSAI MODEL) -->
+    <section class="container">
+        <h2 class="section-title">
+            <span lang="th">อัตลักษณ์เด่น: THUNGSAI MODEL</span>
+            <span lang="en">Identity: THUNGSAI MODEL</span>
+        </h2>
+        <div class="model-grid">
+            <div class="model-item">
+                <span class="model-letter">T</span>
+                <span class="model-key">Technology & Teamwork</span>
+                <span class="model-desc" lang="th">ใช้เทคโนโลยีและทำงานเป็นทีม</span>
+                <span class="model-desc" lang="en">Utilizing technology & teamwork.</span>
+            </div>
+            <div class="model-item">
+                <span class="model-letter">H</span>
+                <span class="model-key">Human Resource</span>
+                <span class="model-desc" lang="th">พัฒนาทรัพยากรมนุษย์</span>
+                <span class="model-desc" lang="en">Developing human resources.</span>
+            </div>
+            <div class="model-item">
+                <span class="model-letter">U</span>
+                <span class="model-key">Unity</span>
+                <span class="model-desc" lang="th">ความเป็นน้ำหนึ่งใจเดียวกัน</span>
+                <span class="model-desc" lang="en">Fostering unity and harmony.</span>
+            </div>
+            <div class="model-item">
+                <span class="model-letter">N</span>
+                <span class="model-key">Network</span>
+                <span class="model-desc" lang="th">สร้างเครือข่ายความร่วมมือ</span>
+                <span class="model-desc" lang="en">Building community networks.</span>
+            </div>
+            <div class="model-item">
+                <span class="model-letter">G</span>
+                <span class="model-key">Good Governance</span>
+                <span class="model-desc" lang="th">บริหารตามหลักธรรมาภิบาล</span>
+                <span class="model-desc" lang="en">Management with transparency.</span>
+            </div>
+            <div class="model-item">
+                <span class="model-letter">S</span>
+                <span class="model-key">Sufficiency Economy</span>
+                <span class="model-desc" lang="th">น้อมนำหลักปรัชญาพอเพียง</span>
+                <span class="model-desc" lang="en">Adopting sufficiency philosophy.</span>
+            </div>
+            <div class="model-item">
+                <span class="model-letter">A</span>
+                <span class="model-key">Achievement</span>
+                <span class="model-desc" lang="th">มุ่งเน้นผลสัมฤทธิ์</span>
+                <span class="model-desc" lang="en">Focusing on student achievement.</span>
+            </div>
+            <div class="model-item">
+                <span class="model-letter">I</span>
+                <span class="model-key">Innovation</span>
+                <span class="model-desc" lang="th">ใช้นวัตกรรมและสารสนเทศ</span>
+                <span class="model-desc" lang="en">Using innovation & information.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. HIGHLIGHTS -->
+    <section id="highlights" style="background-color: var(--bg-gray);">
+        <div class="container">
+            <h2 class="section-title"><span lang="th">จุดเด่นของสถานศึกษา</span><span lang="en">School Highlights</span></h2>
+            
+            <div class="highlights-grid">
+                <!-- 1. O-NET -->
+                <div class="hl-card">
+                    <img src="onet.png" alt="O-NET" class="hl-icon">
+                    <div class="hl-title"><span lang="th">ยกระดับ O-NET</span><span lang="en">O-NET Elevation</span></div>
+                    <p lang="th">มุ่งมั่นพัฒนาผลสัมฤทธิ์ทางการเรียนระดับชาติ</p>
+                    <p lang="en">Committed to improving National Test scores.</p>
+                </div>
+
+                <!-- 2. Clean School -->
+                <div class="hl-card">
+                    <img src="clean.png" alt="White School" class="hl-icon">
+                    <div class="hl-title"><span lang="th">สถานศึกษาสีขาว</span><span lang="en">White School Project</span></div>
+                    <p lang="th">ปลอดยาเสพติดและอบายมุข 100%</p>
+                    <p lang="en">A 100% Drug-Free and Vice-Free environment.</p>
+                </div>
+
+                <!-- 3. Happy Toilet -->
+                <div class="hl-card">
+                    <img src="toilet.png" alt="Happy Toilet" class="hl-icon">
+                    <div class="hl-title"><span lang="th">สุขาดี มีความสุข</span><span lang="en">Happy Toilet Project</span></div>
+                    <p lang="th">ต้นแบบด้านสุขอนามัยและความสะอาด</p>
+                    <p lang="en">Model school for hygiene and sanitation.</p>
+                </div>
+
+                <!-- 4. DLTV -->
+                <div class="hl-card">
+                    <span class="hl-emoji">📡</span>
+                    <div class="hl-title"><span lang="th">มาตรฐาน DLTV</span><span lang="en">DLTV Standard</span></div>
+                    <p lang="th">การศึกษาทางไกลมาตรฐานเดียวกับวังไกลกังวล</p>
+                    <p lang="en">Distance learning standard from Wang Klai Kangwon.</p>
+                </div>
+
+                <!-- 5. Network -->
+                <div class="hl-card">
+                    <span class="hl-emoji">🤝</span>
+                    <div class="hl-title"><span lang="th">เครือข่ายคุณภาพ</span><span lang="en">Quality Network</span></div>
+                    <p lang="th">ความร่วมมือเข้มแข็งระหว่างบ้านและโรงเรียน</p>
+                    <p lang="en">Strong cooperation between home and school.</p>
+                </div>
+
+                <!-- 6. Active Learning -->
+                <div class="hl-card">
+                    <img src="active.png" alt="Active Learning" class="hl-icon">
+                    <div class="hl-title"><span lang="th">Active Learning</span><span lang="en">Active Learning</span></div>
+                    <p lang="th">เน้นการปฏิบัติจริง สร้างทักษะชีวิตที่ยั่งยืน</p>
+                    <p lang="en">Focusing on hands-on practice for life skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CURRICULUM -->
+    <section id="curriculum" class="container">
+        <h2 class="section-title"><span lang="th">หลักสูตรการเรียนการสอน</span><span lang="en">Curriculum</span></h2>
+        <div class="curr-container">
+            <div class="curr-box">
+                <div class="curr-header">
+                    <span lang="th">ระดับปฐมวัย (อนุบาล)</span>
+                    <span lang="en">Kindergarten Level</span>
+                </div>
+                <div class="curr-body">
+                    <p lang="th">เตรียมความพร้อม พัฒนาการ 4 ด้าน ผ่านกิจกรรมบูรณาการ</p>
+                    <p lang="en">Holistic development through integrated play-based activities.</p>
+                    <ul class="curr-list">
+                        <li><span lang="th">กิจกรรมเคลื่อนไหวและจังหวะ</span><span lang="en">Movement & Rhythm</span></li>
+                        <li><span lang="th">กิจกรรมสร้างสรรค์และศิลปะ</span><span lang="en">Creative Arts</span></li>
+                        <li><span lang="th">กิจกรรมกลางแจ้ง</span><span lang="en">Outdoor Activities</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="curr-box">
+                <div class="curr-header">
+                    <span lang="th">ระดับประถมศึกษา</span>
+                    <span lang="en">Primary Level</span>
+                </div>
+                <div class="curr-body">
+                    <p lang="th">หลักสูตรแกนกลางฯ เน้นผู้เรียนเป็นสำคัญ</p>
+                    <p lang="en">Core Basic Education Curriculum (Student-centered).</p>
+                    <ul class="curr-list">
+                        <li><span lang="th">8 กลุ่มสาระวิชาหลัก</span><span lang="en">8 Core Subject Areas</span></li>
+                        <li><span lang="th">เทคโนโลยีและวิทยาการคำนวณ</span><span lang="en">Technology & Computing</span></li>
+                        <li><span lang="th">บูรณาการ DLTV</span><span lang="en">DLTV Integration</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CONTACT -->
+    <section id="contact" style="background-color: #222; color: white; padding: 4rem 0;">
+        <div class="container" style="display: flex; flex-direction: column; text-align: center;">
+            <h2 style="color: white; margin-bottom: 20px;">
+                <span lang="th">ติดต่อเรา</span><span lang="en">Contact Us</span>
+            </h2>
+            <div class="contact-info">
+                <p>
+                    <span lang="th">📍 หมู่ที่ 7 บ้านทุ่งไทร ตำบลบางสะพาน อำเภอบางสะพานน้อย จังหวัดประจวบคีรีขันธ์ 77170</span>
+                    <span lang="en">📍 Moo 7, Ban Thung Sai, Bang Saphan, Bang Saphan Noi, Prachuap Khiri Khan 77170</span>
+                </p>
+                <p>📧 Email: thoongsai@hotmail.com</p>
+            </div>
+            <a href="https://www.facebook.com/p/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%97%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B9%84%E0%B8%97%E0%B8%A3-Banthungsai-School-61554338277094/" target="_blank" class="fb-btn">
+                <span lang="th">📘 ติดตามเพจ Facebook</span>
+                <span lang="en">📘 Follow on Facebook</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ban Thung Sai School. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Check for saved language preference on load
+        window.onload = function() {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'en') {
+                document.body.classList.add('english-mode');
+            }
+        }
+
+        function toggleLanguage() {
+            const body = document.body;
+            body.classList.toggle('english-mode');
+            
+            // Save preference
+            const isEnglish = body.classList.contains('english-mode');
+            localStorage.setItem('language', isEnglish ? 'en' : 'th');
+        }
+    </script>
+</body>
+</html>
